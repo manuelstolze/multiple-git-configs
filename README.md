@@ -4,7 +4,7 @@ This guide will help you set up a centralized Git configuration system that allo
 
 ## Step 1: Create Separate Config Files
 
-First, create three separate config files: one for personal use, one for work, and one as a default fallback. Let's say these are located at `~/.gitconfig_personal`, `~/.gitconfig_work`, and `~/.gitconfig_default` respectively.
+First, create two separate config files: one for personal use, one for work. Let's say these are located at `~/.gitconfig-personal`, `~/.gitconfig-work`.
 
 In each of these files, set the user name and email (and any other config settings you want to be different) like this:
 
@@ -22,9 +22,9 @@ In your main `~/.gitconfig` file, use the `includeIf` directive to include the a
 
 ```ini
 [includeIf "gitdir:~/work/"]
-    path = .gitconfig_work
+    path = .gitconfig-work
 [includeIf "gitdir:~/personal/"]
-    path = .gitconfig_personal
+    path = .gitconfig-personal
 ```
 
 Replace `~/work/` and `~/personal/` with the actual paths where your work and personal repositories are located.
@@ -37,9 +37,9 @@ You can also define the default settings directly in the `~/.gitconfig` file. An
     email = default.email@example.com
 
 [includeIf "gitdir:~/work/"]
-    path = .gitconfig_work
+    path = .gitconfig-work
 [includeIf "gitdir:~/personal/"]
-    path = .gitconfig_personal
+    path = .gitconfig-personal
 ```
 
 In this example, `Default Name` and `default.email@example.com` will be used as the default user name and email.
@@ -56,7 +56,7 @@ For example, if you have the following in your `~/.gitconfig`:
     email = default.email@example.com
 ```
 
-And the following in your `~/.gitconfig_work`:
+And the following in your `~/.gitconfig-work`:
 
 ```ini
 [user]
