@@ -2,7 +2,30 @@
 
 This guide will help you set up a centralized Git configuration system that allows you to use different configurations based on the repository you're working on. This is particularly useful if you're using the same machine for both personal and work projects and you want to use different user names and emails for each.
 
-## Step 1: Create Separate Config Files
+## Automated Setup
+To facilitate the setup of your Git configurations, you can use an interactive script. This script will prompt you for your details, install Git if necessary, create your work and personal directories, and set up your configuration files accordingly.
+
+### Running the Configuration Script
+
+1. **Download the Script**: Obtain the script and save it as `setup-git-configs.sh` on your machine.
+
+2. **Make the Script Executable**: You need to grant execution permissions to the script. Open your terminal and run:
+    ```bash
+    chmod +x setup-git-configs.sh
+    ```
+3. **Execute the Script**: Start the script by entering the following command in your terminal:
+    ```bash
+    ./setup-git-configs.sh
+    ```
+    Follow the on-screen prompts to enter your full name and email addresses for both personal and work settings.
+
+4. Check the Results: After the script has finished, ensure that the directories `~/work/` and `~/personal/` have been created (if they didn't exist already) and that the `.gitconfig`, `.gitconfig-work`, and `.gitconfig-personal` files are in place with the information you provided.
+
+5. Start using your configurations: With your new setup, Git will automatically use the correct user information based on the repository's location, allowing you to switch contexts effortlessly.
+
+## Manual setup
+
+### Step 1: Create Separate Config Files
 
 First, create two separate config files: one for personal use, one for work. Let's say these are located at `~/.gitconfig-personal`, `~/.gitconfig-work`.
 
@@ -16,7 +39,7 @@ In each of these files, set the user name and email (and any other config settin
 
 Replace `Your Name` and `your.email@example.com` with your actual name and email.
 
-## Step 2: Set Up the Main Config File
+### Step 2: Set Up the Main Config File
 
 In your main `~/.gitconfig` file, use the `includeIf` directive to include the appropriate config file based on the repository's path. For example:
 
