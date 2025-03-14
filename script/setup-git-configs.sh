@@ -26,7 +26,7 @@ install_git() {
 
 # Function to create directories if they don't exist
 create_dirs() {
-  for dir in ~/techem ~/personal; do
+  for dir in ~/work ~/personal; do
     if [ ! -d "$dir" ]; then
       echo "Creating directory $dir..."
       mkdir -p "$dir"
@@ -42,7 +42,7 @@ create_gitconfigs() {
 
   # Prompt for user information
   read -rp "Enter your full name: " full_name
-  read -rp "Enter your Techem email address: " techem_email
+  read -rp "Enter your work email address: " work_email
   read -rp "Enter your personal email address: " personal_email
 
   # Create main .gitconfig
@@ -54,17 +54,17 @@ create_gitconfigs() {
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
 # Use context related config
-[includeIf "gitdir:~/techem/"]
-	path = .gitconfig-techem
+[includeIf "gitdir:~/work/"]
+	path = .gitconfig-work
 [includeIf "gitdir:~/personal/"]
 	path = .gitconfig-personal
 EOF
 
   # Create .gitconfig-techem
-  cat > ~/.gitconfig-techem << EOF
+  cat > ~/.gitconfig-work << EOF
 [user]
 	name = $full_name
-	email = $techem_email
+	email = $work_email
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [core]
